@@ -1,0 +1,47 @@
+{% load i18n %}
+{% load static %}
+
+{% get_current_language_bidi as LANGUAGE_BIDI %}
+{% get_current_language as LANGUAGE_CODE %}
+<html dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}" lang="{{ LANGUAGE_CODE }}">
+
+<head>
+    <!-- Load translations into Javascript -->
+    <script src="{% url 'javascript-catalog' %}"></script>
+    <!-- Load our JS script that uses translations -->
+    <script src="{% static 'django_i18n_example/index.js' %}"></script>
+</head>
+
+<body>
+    <form action="{% url 'set_language' %}" method="post">{% csrf_token %}
+        <input name="next" type="hidden" value="/">
+        <select name="language" onchange="this.form.submit()">
+            {% get_available_languages as LANGUAGES %}
+            {% get_language_info_list for LANGUAGES as languages %}
+            {% for language in languages %}
+            <option value="{{ language.code }}" {% if language.code == LANGUAGE_CODE %} selected{% endif %}>
+                {{ language.name_local }} ({{ language.code }})
+            </option>
+            {% endfor %}
+        </select>
+    </form>
+
+
+    <h2>Translated in python code</h2>
+    <div>{{ simpleString }}</div>
+    <div>{{ pluralString }}</div>
+
+    <h2>Translated in django template</h2>
+    <div>{% translate "Simple string" %}</div>
+    <div>{% blocktranslate count count=objectsCount %}There is {{ count }} object{% plural %}There are {{ count }} objects{% endblocktranslate %}</div>
+
+    <h2>Translated in javascript</h2>
+    <div id="js-simple-string"></div>
+    <div id="js-plural-string"></div>
+
+    <script>
+        translateInJs({{ objectsCount }})
+    </script>
+</body>
+
+</html>

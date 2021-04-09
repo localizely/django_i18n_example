@@ -1,0 +1,22 @@
+msgid ""
+msgstr ""
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: localizely.com\n"
+"Last-Translator: localizely.com\n"
+"Language-Team: localizely.com\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: de\n"
+
+#: django_i18n_example/templates/django_i18n_example/index.html:35
+#: django_i18n_example/views.py:10
+msgid "Simple string"
+msgstr "Einfache Zeichenfolge"
+
+#: django_i18n_example/templates/django_i18n_example/index.html:36
+#: django_i18n_example/views.py:12
+msgid "There is %(count)s object"
+msgid_plural "There is %(count)s object"
+msgstr[0] "Es gibt %(count)s Objekt"
+msgstr[1] "Es gibt %(count)s Objekte"
