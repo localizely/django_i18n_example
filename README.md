@@ -1,5 +1,7 @@
 # Django i18n example
 
+![demo](./images/django-i18n-example.gif)
+
 This project is a tutorial on how to do internationalization (i18n) with Django projects.
 
 It contains Django examples for:
